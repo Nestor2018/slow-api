@@ -12,7 +12,7 @@
                 //setTimeout(async function() {
                 let data = localStorage.getItem("key");
                 let text = document.getElementById("response");
-                text.innerText = data;
+                text.innerText = data + " cache";
                 //}, 3000);
             }
 
@@ -23,7 +23,7 @@
                     .then(response => response.json())
                     .then(json => {
                         let text = document.getElementById("response");
-                        text.innerText = json.id;
+                        text.innerText = json.title + " api";
                         input("key", json.title);
                     });
                 //}, 3000);
@@ -31,9 +31,8 @@
             // runs faster than slow_function by using cache functions
             function memorize(slow_function) {
                 async function fast_function() {
-                    await cache_retrieve("id");
+                    await cache_retrieve("key");
                 }
-                console.log("memorize");
                 return fast_function();
             }
 
